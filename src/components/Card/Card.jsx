@@ -8,7 +8,7 @@ const Card = ({product}) => {
     <p>Name: {name}</p>
     <p>Price: {price}$</p>
     <p>Provider: {provider}</p>
-    <p>Rating: {rating}</p>
+    <p>Rating: {rating}/5 Stars</p>
   </div>;
 };
 

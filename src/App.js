@@ -13,10 +13,15 @@ function App() {
   const [product, setProduct] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(10);
+  const [sort, setSort] = useState('');
 
   const searchProduct = (search) => {
     setSearch(search);
     setCurrentPage(1);
+  }
+
+  const handleSort = (e) => {
+    setSort(e.target.value)
   }
 
   useEffect(() => {
@@ -29,10 +34,10 @@ function App() {
             'name': element.name,
             'price': element.price,
             'rating': element.rating,
-            'provider': element.provider.name
+            'provider': element.provider.name,
+            'id': element.id
           }
         })
-        console.log(productArray)
         setProduct(productArray);
       } catch (error) {
         console.log('error', error)
@@ -41,9 +46,25 @@ function App() {
     fetchProducts();
   }, [search])
 
+  const sorted = product.sort((a, b) => {
+    if(sort === 'Cheap'){
+      return a.price - b.price
+    } else if(sort === 'Expensive'){
+      return b.price - a.price
+    } else if(sort === 'Best'){
+      return b.rating - a.rating
+    } else if(sort === 'Worst'){
+      return a.rating - b.rating
+    } else if(sort === 'Ascending'){
+      return a.name.localeCompare(b.name)
+    } else if(sort === 'Descending'){
+      return b.name.localeCompare(a.name)
+    }
+  })
+
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = product.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = sorted.slice(indexOfFirstProduct, indexOfLastProduct);
 
   const handleNextPage = () => {
     if(currentPage !== Math.ceil(product.length/productsPerPage) && product.length/productsPerPage >= 1){
@@ -61,6 +82,7 @@ function App() {
     searchProduct,
     handleNextPage,
     handlePrevPage,
+    handleSort,
     currentProducts,
     currentPage
   }
