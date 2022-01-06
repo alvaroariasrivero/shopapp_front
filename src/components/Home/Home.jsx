@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import {productContext} from '../../context/productContext';
 import {Link} from 'react-router-dom';
 import Card from '../Card';
+import './Home.css';
 
 const Home = () => {
 
   const {currentProducts, handleNextPage, currentPage, handlePrevPage, handleSort, searchProduct} = useContext(productContext);
 
   const paintCards = () => {
-    return currentProducts.map((item, i)  => <Link to={`/product/?id=${item.id}`} key={i}><Card product={item}/></Link>
+    return currentProducts.map((item, i)  => <Link to={`/product/?id=${item.id}`} key={i} className="cardLink"><Card product={item}  className="cardLink"/></Link>
     )}
 
   const handleSubmit = (event) => {
@@ -18,22 +19,30 @@ const Home = () => {
   }
 
   return <>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="search">Search: </label>
-            <input type="text" name="search"/>
-            <input type="submit" value="search"/>
-            <select defaultValue='Sort' onChange={handleSort}>
-              <option value="Sort">Sort</option>
-              <option value="Cheap">Cheapest</option>
-              <option value="Expensive">Most expensive</option>
-              <option value="Best">Best Rated</option>
-              <option value="Worst">Worst Rated</option>
-              <option value="Ascending">Alphabetically Ascending</option>
-              <option value="Descending">Alphabetically Descending</option>
-            </select>
-          </form>
-          <div>{paintCards()}</div>
-          <div>
+          <div className="search">
+            <form onSubmit={handleSubmit}>
+              <div className="txtInput">
+                <label htmlFor="search">Search: </label>
+                <input type="text" name="search"/>
+              </div>
+              <div>
+                <input type="submit" value="Search" className="submitbtn"/>
+              </div>
+              <div>
+                <select defaultValue='Sort' onChange={handleSort} className="sort">
+                  <option value="Sort">Sort</option>
+                  <option value="Cheap">Cheapest</option>
+                  <option value="Expensive">Most expensive</option>
+                  <option value="Best">Best Rated</option>
+                  <option value="Worst">Worst Rated</option>
+                  <option value="Ascending">Alphabetically Ascending</option>
+                  <option value="Descending">Alphabetically Descending</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div className="cardflex">{paintCards()}</div>
+          <div className="pagination">
             <button onClick={handlePrevPage}>Prev</button>
             <p>Page {currentPage}</p>
             <button onClick={handleNextPage}>Next</button>

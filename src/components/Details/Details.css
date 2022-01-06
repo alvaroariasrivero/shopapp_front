@@ -1,0 +1,14 @@
+.cardDetails{
+    font-family: 'Roboto', sans-serif;
+    background-color: #F5FBF3;
+    margin: 2rem auto;
+    width: 75%;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 10px 10px 10px #DECCCA;
+}
+
+.description{
+    text-align: justify;
+    padding: 0 1.5rem;
+}
