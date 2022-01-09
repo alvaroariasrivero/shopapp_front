@@ -1,3 +1,19 @@
+.container{
+    min-height: 76vh;
+}
+
+label{
+    color: #2A2B2A;
+}
+
+p{
+    color: #2A2B2A;
+}
+
+select{
+    color: #2A2B2A;
+}
+
 .search{
     display: flex;
     flex-direction: column;
@@ -69,4 +85,20 @@
     background-color: #6959F5;
     color: #EBB100;
     padding: 0.2rem 0.7rem;
+}
+
+.noResults{
+    font-family: 'Roboto', sans-serif;
+    background-color: #F5FBF3;
+    color: #2A2B2A;
+    width: 10rem;
+    padding: 2.1rem;
+    border-radius: 5px;
+    box-shadow: 10px 10px 10px #DECCCA;
+    height: 10rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
 }

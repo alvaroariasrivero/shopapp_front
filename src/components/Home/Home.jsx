@@ -18,15 +18,12 @@ const Home = () => {
     searchProduct(search);
   }
 
-  return <>
+  return <div className="container">
           <div className="search">
             <form onSubmit={handleSubmit}>
               <div className="txtInput">
                 <label htmlFor="search">Search: </label>
                 <input type="text" name="search"/>
-              </div>
-              <div>
-                <input type="submit" value="Search" className="submitbtn"/>
               </div>
               <div>
                 <select defaultValue='Sort' onChange={handleSort} className="sort">
@@ -39,15 +36,22 @@ const Home = () => {
                   <option value="Descending">Alphabetically Descending</option>
                 </select>
               </div>
+              <div>
+                <input type="submit" value="Search" className="submitbtn"/>
+              </div>
             </form>
           </div>
+          {currentProducts.length > 0 
+          ?<>
           <div className="cardflex">{paintCards()}</div>
+          </>
+        : <div className="noResults"><h2>No search results with these values</h2></div>}
           <div className="pagination">
             <button onClick={handlePrevPage}>Prev</button>
             <p>Page {currentPage}</p>
             <button onClick={handleNextPage}>Next</button>
           </div>
-        </>;
+        </div>;
 };
 
 export default Home;

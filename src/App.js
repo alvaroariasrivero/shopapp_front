@@ -95,8 +95,8 @@ function App() {
         <productContext.Provider value={prodObj}>
           <Main/>
         </productContext.Provider>
-        <Footer/>
       </BrowserRouter>
+      <div id="footer"><Footer/></div>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React from "react";
 import './Footer.css'
 
 const Footer = () => {
-  return <footer>Made by Álvaro Arias Rivero</footer>;
+  return <div className="footer"><footer>Made by Álvaro Arias Rivero</footer></div>;
 };
 
 export default Footer;
